@@ -1,0 +1,60 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: rgb(24, 84, 59);
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+    text-align: center;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.movie-item {
+  width: 320px;
+}
+
+.video-title {
+    text-align: center;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.video-channel {
+    text-align: center;
+  color: gray;
+  font-size: 0.9em;
+}
+
+footer {
+  background-color: rgb(24, 84, 59);
+  text-align: center;
+  padding: 10px;
+}
+
+/* Responsive nhẹ */
+@media (max-width: 600px) {
+  .movie-list {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+

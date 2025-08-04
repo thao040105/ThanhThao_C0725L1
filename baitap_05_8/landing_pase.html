@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Landing Page với Bootstrap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Trang Mẫu</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Dịch vụ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid bg-primary text-white text-center py-5">
+    <h1 class="display-4">Chào mừng đến với trang của chúng tôi</h1>
+    <p class="lead">Chúng tôi cung cấp dịch vụ chất lượng cao với giao diện chuyên nghiệp</p>
+    <a href="#" class="btn btn-light mt-3">Liên hệ ngay</a>
+  </div>
+
+  <section id="about" class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h2>Về chúng tôi</h2>
+        <p>Chúng tôi là đội ngũ sáng tạo và chuyên nghiệp trong lĩnh vực thiết kế website, marketing và giải pháp số.</p>
+      </div>
+      <div class="col-md-6">
+        <img src="../media/anh1.jpeg" alt="Giới thiệu" class="img-fluid rounded">
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="bg-light py-5">
+    <div class="container text-center">
+      <h2 class="mb-4">Dịch vụ của chúng tôi</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="../media/anh3.webp" class="card-img-top" alt="Dịch vụ 1">
+            <div class="card-body">
+              <h5 class="card-title">Thiết kế Web</h5>
+              <p class="card-text">Giao diện đẹp, responsive và dễ sử dụng cho mọi thiết bị.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="../media/anh4.jpg" class="card-img-top" alt="Dịch vụ 2">
+            <div class="card-body">
+              <h5 class="card-title">Marketing Online</h5>
+              <p class="card-text">Chiến lược quảng bá hiệu quả giúp bạn tiếp cận khách hàng tiềm năng.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="../media/anh5.jpg" class="card-img-top" alt="Dịch vụ 3">
+            <div class="card-body">
+              <h5 class="card-title">Tư vấn giải pháp số</h5>
+              <p class="card-text">Tối ưu hóa hoạt động kinh doanh bằng công nghệ hiện đại.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Liên hệ -->
+  <section id="contact" class="container py-5">
+    <h2 class="text-center mb-4">Liên hệ với chúng tôi</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Họ tên</label>
+            <input type="text" class="form-control" id="name" placeholder="Nhập họ tên của bạn">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn">
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Nội dung</label>
+            <textarea class="form-control" id="message" rows="4" placeholder="Nhập tin nhắn..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">&copy; @ThanhThao</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

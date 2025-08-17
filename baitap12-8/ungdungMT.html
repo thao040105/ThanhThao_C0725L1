@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Máy tính đơn giản</title>
+</head>
+<body>
+ 
+  <input type="number" id="so1" placeholder="Nhập số thứ nhất">
+  <input type="number" id="so2" placeholder="Nhập số thứ hai">
+
+
+  <button onclick="cong()">Cộng</button>
+  <button onclick="tru()">Trừ</button>
+
+ 
+  <h3>Result:</h3>
+  <p id="ketqua">Đây là kết quả</p>
+
+  <script>
+    function cong() {
+      let a = document.getElementById("so1").value;
+      let b = document.getElementById("so2").value;
+      let tong = Number(a) + Number(b);  
+      document.getElementById("ketqua").innerText = "Kết quả: " + tong;
+    }
+
+    function tru() {
+      let a = document.getElementById("so1").value;
+      let b = document.getElementById("so2").value;
+      let hieu = Number(a) - Number(b);
+      document.getElementById("ketqua").innerText = "Kết quả: " + hieu;
+    }
+  </script>
+</body>
+</html>
+
+</body>
+</html>

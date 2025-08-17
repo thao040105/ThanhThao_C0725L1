@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let n=parseInt(prompt("Nhập số ngày trong tuần (1-7):"));
+        let days ={
+            1: "Chủ nhật",
+            2: "Thứ hai",
+            3: "Thứ ba",
+            4: "Thứ tư",
+            5: "Thứ năm",
+            6: "Thứ sáu",
+            7: "Thứ bảy"
+        }
+        if(days[n]){
+            document.write(days[n]);
+        } else {
+            document.write("Không hợp lệ, vui lòng nhập số từ 1 đến 7.");
+        }
+
+    </script>
+</body>
+</html>

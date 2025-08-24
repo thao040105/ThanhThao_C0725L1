@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 12: Lãi ngân hàng</title>
+</head>
+<body>
+  <h2>Tính lãi ngân hàng (lãi kép)</h2>
+  <input type="number" id="tien" placeholder="Số tiền ban đầu (VNĐ)">
+  <input type="number" id="thang" placeholder="Số tháng">
+  <input type="number" id="lai" placeholder="Lãi suất %/tháng">
+  <button onclick="tinhLai()">Tính</button>
+  <p id="result"></p>
+
+  <script>
+    function tinhLai() {
+      let tien = parseFloat(document.getElementById("tien").value);
+      let thang = parseInt(document.getElementById("thang").value);
+      let lai = parseFloat(document.getElementById("lai").value) / 100;
+      let tong = tien * Math.pow(1 + lai, thang);
+      document.getElementById("result").innerText = 
+        "Sau " + thang + " tháng, số tiền là: " + tong.toLocaleString() + " VNĐ";
+    }
+  </script>
+</body>
+</html>

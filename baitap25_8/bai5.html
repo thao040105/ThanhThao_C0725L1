@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 5 - Diện tích tam giác vuông</title>
+</head>
+<body>
+  <h2>Tính diện tích tam giác vuông</h2>
+  <input type="number" id="a" placeholder="Nhập cạnh góc vuông a">
+  <input type="number" id="b" placeholder="Nhập cạnh góc vuông b">
+  <button onclick="calc()">Tính</button>
+  <p id="result"></p>
+
+  <script>
+    function calc() {
+      let a = Number(document.getElementById("a").value);
+      let b = Number(document.getElementById("b").value);
+      let s = (a * b) / 2;
+      document.getElementById("result").innerText = "Diện tích tam giác vuông = " + s;
+    }
+  </script>
+</body>
+</html>

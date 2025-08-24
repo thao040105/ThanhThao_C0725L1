@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 1 - Độ C sang độ F</title>
+</head>
+<body>
+  <h2>Chuyển đổi °C → °F</h2>
+  <input type="number" id="celsius" placeholder="Nhập độ C">
+  <button onclick="convert()">Chuyển đổi</button>
+  <p id="result"></p>
+
+  <script>
+    function convert() {
+      let c = Number(document.getElementById("celsius").value);
+      let f = c * 9/5 + 32;
+      document.getElementById("result").innerText = c + " °C = " + f.toFixed(2) + " °F";
+    }
+  </script>
+</body>
+</html>

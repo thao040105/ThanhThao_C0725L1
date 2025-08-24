@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 4 - Diện tích HCN</title>
+</head>
+<body>
+  <h2>Tính diện tích hình chữ nhật</h2>
+  <input type="number" id="a" placeholder="Nhập chiều dài a">
+  <input type="number" id="b" placeholder="Nhập chiều rộng b">
+  <button onclick="calc()">Tính</button>
+  <p id="result"></p>
+
+  <script>
+    function calc() {
+      let a = Number(document.getElementById("a").value);
+      let b = Number(document.getElementById("b").value);
+      let s = a * b;
+      document.getElementById("result").innerText = "Diện tích HCN = " + s;
+    }
+  </script>
+</body>
+</html>

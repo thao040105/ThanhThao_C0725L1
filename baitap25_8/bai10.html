@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 10: Tính giá điện</title>
+</head>
+<body>
+  <h2>Tính tiền điện</h2>
+  <input type="number" id="kwh" placeholder="Nhập số kWh">
+  <button onclick="tinhDien()">Tính</button>
+  <p id="result"></p>
+
+  <script>
+    function tinhDien() {
+      let kwh = parseFloat(document.getElementById("kwh").value);
+      let tien = 0;
+      if (kwh <= 50) tien = kwh * 1678;
+      else if (kwh <= 100) tien = 50 * 1678 + (kwh - 50) * 1734;
+      else if (kwh <= 200) tien = 50 * 1678 + 50 * 1734 + (kwh - 100) * 2014;
+      else tien = 50 * 1678 + 50 * 1734 + 100 * 2014 + (kwh - 200) * 2536;
+      document.getElementById("result").innerText = "Tiền điện = " + tien.toLocaleString() + " VNĐ";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 6: Giải PT bậc 1</title>
+</head>
+<body>
+  <h2>Giải phương trình bậc 1: ax + b = 0</h2>
+  <input type="number" id="a" placeholder="Nhập a">
+  <input type="number" id="b" placeholder="Nhập b">
+  <button onclick="giaiPT()">Giải</button>
+  <p id="result"></p>
+
+  <script>
+    function giaiPT() {
+      let a = parseFloat(document.getElementById("a").value);
+      let b = parseFloat(document.getElementById("b").value);
+      let kq = "";
+      if (a === 0) {
+        if (b === 0) kq = "Phương trình có vô số nghiệm";
+        else kq = "Phương trình vô nghiệm";
+      } else {
+        kq = "Nghiệm x = " + (-b / a);
+      }
+      document.getElementById("result").innerText = kq;
+    }
+  </script>
+</body>
+</html>

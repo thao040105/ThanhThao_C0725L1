@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Ước của n</title>
+</head>
+<body>
+  <h2>Hiển thị các ước của n</h2>
+  <script>
+    let n;
+
+    do {
+      n = parseInt(prompt("Nhập một số nguyên dương n: "));
+    } while (isNaN(n) || n <= 0);
+      let count = 0;
+    for (let i = 1; i <= n; i++) {
+      if (n % i === 0) {
+        count++;
+        break;
+      }
+    }
+    if(count ==1){
+      alert("n ko phai la so nguyen to");
+
+    }else{
+      alert("n la so nguyen to");
+    }
+  </script>
+</body>
+</html>

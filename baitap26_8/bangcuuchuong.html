@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bảng cửu chương</title>
+  <style>
+    :root{
+      --cell-w: 110px;
+      --gap: 6px;
+    }
+    body{
+      font-family: Inter, Roboto, "Segoe UI", Arial, sans-serif;
+      padding: 24px;
+      background: #f5f7fb;
+      color: #222;
+    }
+    h1{
+      margin-bottom: 8px;
+      font-size: 22px;
+    }
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .table-container{
+      background: white;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+      overflow-x: auto;
+    }
+
+    table.mul {
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      text-align: center;
+    }
+
+    table.mul td, table.mul th {
+      border: 1px solid #c8d0da;
+      padding: 8px;
+      min-width: var(--cell-w);
+      white-space: nowrap;
+      font-family: "Courier New", monospace;
+      font-size: 14px;
+    }
+
+    table.mul th {
+      background: #eef3fb;
+      font-weight: 600;
+    }
+
+    @media (max-width:720px){
+      :root{ --cell-w: 86px; }
+      table.mul td { font-size: 13px; padding: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>[Bài tập] Sinh bảng cửu chương</h1>
+    <div class="table-container">
+      <table id="mulTable" class="mul" aria-label="Bảng cửu chương"></table>
+    </div>
+  </div>
+
+  <script>
+    
+    const start = 1;
+    const end = 9;  
+
+    const table = document.getElementById('mulTable');
+
+    
+    const thead = document.createElement('thead');
+    const headRow = document.createElement('tr');
+   
+    const cornerTh = document.createElement('th');
+    cornerTh.textContent = ''; 
+    headRow.appendChild(cornerTh);
+
+    for (let c = start; c <= end; c++) {
+      const th = document.createElement('th');
+      th.textContent = c + ' lần';
+      headRow.appendChild(th);
+    }
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+
+    
+    const tbody = document.createElement('tbody');
+
+    for (let r = start; r <= end; r++) {
+      const tr = document.createElement('tr');
+
+      
+      const rowHeader = document.createElement('th');
+      rowHeader.textContent = r + ' lần';
+      tr.appendChild(rowHeader);
+
+    
+      for (let c = start; c <= end; c++) {
+        const td = document.createElement('td');
+        
+        td.textContent = `${c}×${r}=${c * r}`;
+        tr.appendChild(td);
+      }
+
+      tbody.appendChild(tr);
+    }
+
+    table.appendChild(tbody);
+  </script>
+</body>
+</html>

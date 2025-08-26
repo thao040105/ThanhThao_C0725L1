@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 3</title>
+</head>
+<body>
+  <h2>Bài 3: 20 số Fibonacci đầu tiên</h2>
+  <script>
+    let a = 0, b = 1;
+    let fibo = "";
+
+    for (let i = 1; i <= 20; i++) {
+      fibo += a + " ";
+      let next = a + b;
+      a = b;
+      b = next;
+    }
+
+    document.write(fibo);
+  </script>
+</body>
+</html>

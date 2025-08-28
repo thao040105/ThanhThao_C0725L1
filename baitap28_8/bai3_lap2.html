@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 3: Tam giác vuông</title>
+</head>
+<body>
+  <h2>Bài 3: In tam giác vuông</h2>
+  <button onclick="inTamGiac()">In Tam Giác</button>
+  <pre id="result"></pre>
+
+  <script>
+    function inTamGiac() {
+      let n = 5; 
+      let kq = "";
+
+      
+      for (let i = 1; i <= n; i++) {
+        kq += "*".repeat(i) + "\n";
+      }
+      kq += "\n";
+
+      
+      for (let i = n; i >= 1; i--) {
+        kq += "*".repeat(i) + "\n";
+      }
+      kq += "\n";
+
+     
+      for (let i = 1; i <= n; i++) {
+        kq += " ".repeat(n - i) + "*".repeat(i) + "\n";
+      }
+      kq += "\n";
+
+      
+      for (let i = n; i >= 1; i--) {
+        kq += " ".repeat(n - i) + "*".repeat(i) + "\n";
+      }
+
+      document.getElementById("result").innerText = kq;
+    }
+  </script>
+</body>
+</html>

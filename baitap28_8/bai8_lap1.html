@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 8: Game đoán số</title>
+</head>
+<body>
+  <h2> Game đoán số</h2>
+  <button onclick="choiGame()">Chơi</button>
+
+  <script>
+    function choiGame() {
+      let min = parseInt(prompt("Nhập số nhỏ nhất trong khoảng:"));
+      let max = parseInt(prompt("Nhập số lớn nhất trong khoảng:"));
+      if (isNaN(min) || isNaN(max) || min >= max) {
+        alert("Khoảng không hợp lệ!");
+        return;
+      }
+
+      let randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+      let doan;
+
+      do {
+        doan = parseInt(prompt("Hãy đoán số trong khoảng từ " + min + " đến " + max + ":"));
+        if (doan === randomNum) {
+          alert("🎉 Chúc mừng! Bạn đã đoán đúng.");
+          break;
+        } else if (doan > randomNum) {
+          alert("Số bạn đoán LỚN hơn đáp án, thử lại nhé!");
+        } else if (doan < randomNum) {
+          alert("Số bạn đoán NHỎ hơn đáp án, thử lại nhé!");
+        }
+      } while (doan !== randomNum);
+    }
+  </script>
+</body>
+</html>

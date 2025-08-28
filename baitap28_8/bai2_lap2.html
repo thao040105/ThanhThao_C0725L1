@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 2: Giai thừa</title>
+</head>
+<body>
+  <h2>Tính giai thừa</h2>
+  <input type="number" id="num" placeholder="Nhập số nguyên dương">
+  <button onclick="tinhGiaiThua()">Tính</button>
+  <p id="result"></p>
+
+  <script>
+    function tinhGiaiThua() {
+      let n = parseInt(document.getElementById("num").value);
+      if (n < 0) {
+        document.getElementById("result").innerText = "Vui lòng nhập số nguyên dương!";
+        return;
+      }
+      let gt = 1;
+      for (let i = 1; i <= n; i++) {
+        gt *= i;
+      }
+      document.getElementById("result").innerText = n + "! = " + gt;
+    }
+  </script>
+</body>
+</html>

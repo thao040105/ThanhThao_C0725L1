@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title> Tổng chia hết cho 7</title>
+</head>
+<body>
+  <h2>Tính tổng của 30 số chia hết cho 7 đầu tiên</h2>
+  <button onclick="tinhTong()">Tính Tổng</button>
+  <p id="result"></p>
+
+  <script>
+    function tinhTong() {
+      let sum = 0;
+      let count = 0;
+      let i = 1;
+      while (count < 30) {
+        if (i % 7 === 0) {
+          sum += i;
+          count++;
+        }
+        i++;
+      }
+      document.getElementById("result").innerText = "Tổng = " + sum;
+    }
+  </script>
+</body>
+</html>

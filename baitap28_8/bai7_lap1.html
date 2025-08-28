@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 7: FizzBuzz</title>
+</head>
+<body>
+  <h2> FizzBuzz từ 1 đến 100</h2>
+  <button onclick="inFizzBuzz()">In kết quả</button>
+  <div id="result"></div>
+
+  <script>
+    function inFizzBuzz() {
+      let output = "";
+      for (let i = 1; i <= 100; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+          output += "FizzBuzz<br>";
+        } else if (i % 3 === 0) {
+          output += "Fizz<br>";
+        } else if (i % 5 === 0) {
+          output += "Buzz<br>";
+        } else {
+          output += i + "<br>";
+        }
+      }
+      document.getElementById("result").innerHTML = output;
+    }
+  </script>
+</body>
+</html>

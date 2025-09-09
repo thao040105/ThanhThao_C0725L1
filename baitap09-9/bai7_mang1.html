@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7</title>
+</head>
+<body>
+    <h1>Bài 7: Xóa phần tử khỏi mảng</h1>
+    <p>Mảng ban đầu:</p>
+    <p id="original-array"></p>
+    <p>Nhập số nguyên v cần xóa:</p>
+    <input type="number" id="input-v">
+    <button onclick="deleteNumber()">Xóa</button>
+    <p id="result"></p>
+    <p>Mảng sau khi xử lý:</p>
+    <p id="new-array"></p>
+
+    <script>
+        const arr = [5, 12, 8, 15, 7, 20, 10, 3, 11, 6];
+        document.getElementById('original-array').textContent = `[${arr.join(', ')}]`;
+
+        function deleteNumber() {
+            const v = parseInt(document.getElementById('input-v').value);
+            const resultElement = document.getElementById('result');
+            const newArrayElement = document.getElementById('new-array');
+            
+            const index = arr.indexOf(v);
+            if (index > -1) {
+                arr.splice(index, 1);
+                arr.push(0);
+                resultElement.textContent = `Đã tìm thấy ${v} trong mảng và đã xóa.`;
+            } else {
+                resultElement.textContent = `${v} không có trong mảng.`;
+            }
+
+            newArrayElement.textContent = `[${arr.join(', ')}]`;
+        }
+    </script>
+</body>
+</html>

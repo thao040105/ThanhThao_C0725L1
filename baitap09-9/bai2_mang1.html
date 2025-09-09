@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2</title>
+</head>
+<body>
+    <h1>Bài 2: Tìm phần tử lớn nhất và vị trí</h1>
+    <p>Mảng số nguyên đã cho:</p>
+    <p id="array-display"></p>
+    <p>Kết quả:</p>
+    <p id="result"></p>
+
+    <script>
+        const arr = [15, 22, 10, 34, 8, 45, 19, 27, 30, 12];
+        document.getElementById('array-display').textContent = `[${arr.join(', ')}]`;
+        
+        let max_value = arr[0];
+        let max_index = 0;
+
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] > max_value) {
+                max_value = arr[i];
+                max_index = i;
+            }
+        }
+        document.getElementById('result').textContent = `Phần tử lớn nhất là: ${max_value}, tại vị trí: ${max_index}`;
+    </script>
+</body>
+</html>

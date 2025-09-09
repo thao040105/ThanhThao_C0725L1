@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Từ điển Anh - Việt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    h2 {
+      color: #333;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px 0;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ứng dụng Từ điển Anh - Việt</h2>
+
+  <input type="text" id="wordInput" placeholder="Nhập từ tiếng Anh...">
+  <button onclick="translateWord()">Tra cứu</button>
+
+  <div id="result"></div>
+
+  <script>
+    // Mảng từ tiếng Anh
+    let english = ["hello", "dog", "cat", "book", "school"];
+    // Mảng nghĩa tiếng Việt (tương ứng)
+    let vietnamese = ["xin chào", "con chó", "con mèo", "quyển sách", "trường học"];
+
+    function translateWord() {
+      let word = document.getElementById("wordInput").value.toLowerCase();
+      let index = english.indexOf(word);  // tìm vị trí trong mảng tiếng Anh
+
+      if (index !== -1) {
+        document.getElementById("result").innerText = 
+          "Nghĩa tiếng Việt: " + vietnamese[index];
+      } else {
+        document.getElementById("result").innerText = "Không tìm thấy!";
+      }
+    }
+  </script>
+</body>
+</html>

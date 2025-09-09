@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 5</title>
+</head>
+<body>
+    <h1>Bài 5: Đếm số nguyên âm</h1>
+    <p>Mảng số nguyên đã cho:</p>
+    <p id="array-display"></p>
+    <p>Kết quả:</p>
+    <p id="result"></p>
+
+    <script>
+        const arr = [10, -5, 2, -15, 7, -3, 0];
+        document.getElementById('array-display').textContent = `[${arr.join(', ')}]`;
+
+        let negative_count = 0;
+        for (const num of arr) {
+            if (num < 0) {
+                negative_count++;
+            }
+        }
+        document.getElementById('result').textContent = `Số lượng số nguyên âm trong mảng là: ${negative_count}`;
+    </script>
+</body>
+</html>

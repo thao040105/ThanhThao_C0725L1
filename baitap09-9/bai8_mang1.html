@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 8</title>
+</head>
+<body>
+    <h1>Bài 8: Sắp xếp mảng giảm dần</h1>
+    <p>Mảng ban đầu:</p>
+    <p id="original-array"></p>
+    <p>Mảng sau khi sắp xếp giảm dần:</p>
+    <p id="sorted-array"></p>
+
+    <script>
+        const arr = [5, 12, 8, 15, 7, 20, 10, 3, 11, 6];
+        document.getElementById('original-array').textContent = `[${arr.join(', ')}]`;
+
+        arr.sort((a, b) => b - a);
+        document.getElementById('sorted-array').textContent = `[${arr.join(', ')}]`;
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3</title>
+</head>
+<body>
+    <h1>Bài 3: Tìm giá trị lớn nhất và trung bình</h1>
+    <p>Mảng số nguyên đã cho:</p>
+    <p id="array-display"></p>
+    <p>Kết quả:</p>
+    <p id="result"></p>
+
+    <script>
+        const arr = [10, 5, 20, 15, 30, 25];
+        document.getElementById('array-display').textContent = `[${arr.join(', ')}]`;
+
+        const max_value = Math.max(...arr);
+        const sum = arr.reduce((total, num) => total + num, 0);
+        const average = sum / arr.length;
+        
+        document.getElementById('result').innerHTML = `
+            Giá trị lớn nhất trong mảng là: ${max_value}<br>
+            Giá trị trung bình của các phần tử là: ${average}
+        `;
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1</title>
+</head>
+<body>
+    <h1>Bài 1: Đếm số lớn hơn hoặc bằng 10</h1>
+    <p>Mảng số nguyên đã cho:</p>
+    <p id="array-display"></p>
+    <p>Kết quả:</p>
+    <p id="result"></p>
+
+    <script>
+        const arr = [5, 12, 8, 15, 7, 20, 10, 3, 11, 6];
+        document.getElementById('array-display').textContent = `[${arr.join(', ')}]`;
+
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] >= 10) {
+                count++;
+            }
+        }
+        document.getElementById('result').textContent = `Có ${count} số lớn hơn hoặc bằng 10 trong mảng.`;
+    </script>
+</body>
+</html>

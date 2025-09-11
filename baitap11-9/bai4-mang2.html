@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 4</title>
+</head>
+<body>
+  <h2>Bài 4: Đếm số từ trong chuỗi</h2>
+  <pre id="output"></pre>
+
+  <script>
+    let str = "Đây là một chuỗi ví dụ";
+    let wordCount = str.trim().split(/\s+/).length;
+    document.getElementById("output").innerText = "Số từ trong chuỗi: " + wordCount;
+  </script>
+</body>
+</html>

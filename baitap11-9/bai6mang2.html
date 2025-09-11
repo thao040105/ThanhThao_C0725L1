@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 6</title>
+</head>
+<body>
+  <h2>Bài 6: Thay thế ký tự '-' bằng '_'</h2>
+  <pre id="output"></pre>
+
+  <script>
+    let arr = ['a', '-', 'b', '-', 'c', '-', 'd'];
+    let replaced = arr.map(ch => (ch === '-' ? '_' : ch)).join("");
+    document.getElementById("output").innerText = "Kết quả: " + replaced;
+  </script>
+</body>
+</html>

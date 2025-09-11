@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 9 - Nối 2 mảng</title>
+</head>
+<body>
+  <h2>Bài 9: Nối 2 mảng số nguyên</h2>
+  <pre id="output"></pre>
+
+  <script>
+    // Khởi tạo 2 mảng a và b gồm 10 phần tử
+    let a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let b = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+    // Tạo mảng c gồm 20 phần tử bằng cách nối a và b
+    let c = a.concat(b);
+
+    // Hiển thị kết quả
+    document.getElementById("output").innerText = 
+      "Mảng a: " + a.join(", ") + "\n" +
+      "Mảng b: " + b.join(", ") + "\n" +
+      "Mảng c (nối từ a và b): " + c.join(", ");
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 3</title>
+</head>
+<body>
+  <h2>Bài 3: Đếm số ký tự số trong mảng</h2>
+  <pre id="output"></pre>
+
+  <script>
+    let arr = ['a', '1', 'b', '2', 'c', '3', '4', 'x', 'y'];
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+      if (!isNaN(arr[i]) && arr[i] !== ' ') {
+        count++;
+      }
+    }
+    document.getElementById("output").innerText = "Số ký tự số trong mảng: " + count;
+  </script>
+</body>
+</html>

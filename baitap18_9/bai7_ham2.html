@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 7 - Đổi chỗ hai số</title>
+</head>
+<body>
+  <h2>Bài 7: Đổi chỗ hai số nguyên</h2>
+  <input type="number" id="a" placeholder="Số a">
+  <input type="number" id="b" placeholder="Số b">
+  <button onclick="swapNumbers()">Đổi chỗ</button>
+  <p id="result"></p>
+
+  <script>
+    function swap(a, b) {
+      return [b, a];
+    }
+
+    function swapNumbers() {
+      let a = parseInt(document.getElementById("a").value);
+      let b = parseInt(document.getElementById("b").value);
+      let [newA, newB] = swap(a, b);
+      document.getElementById("result").innerText = 
+        "Sau khi đổi: a = " + newA + ", b = " + newB;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 2 - Diện tích & Chu vi hình tròn</title>
+</head>
+<body>
+  <h2>Bài 2: Tính diện tích và chu vi hình tròn</h2>
+  <input type="number" id="radius" placeholder="Nhập bán kính (r)">
+  <button onclick="calcCircle()">Tính toán</button>
+  <p id="area"></p>
+  <p id="perimeter"></p>
+
+  <script>
+    const PI = Math.PI;
+
+    // Hàm tính diện tích hình tròn
+    function calcArea(r) {
+      return PI * r * r;
+    }
+
+    // Hàm tính chu vi hình tròn
+    function calcPerimeter(r) {
+      return 2 * PI * r;
+    }
+
+    // Gọi và kiểm tra hàm
+    function calcCircle() {
+      let r = parseFloat(document.getElementById("radius").value);
+      if (isNaN(r) || r <= 0) {
+        document.getElementById("area").innerText = "Vui lòng nhập bán kính hợp lệ!";
+        document.getElementById("perimeter").innerText = "";
+        return;
+      }
+      document.getElementById("area").innerText = 
+        "Diện tích hình tròn: " + calcArea(r).toFixed(2);
+      document.getElementById("perimeter").innerText = 
+        "Chu vi hình tròn: " + calcPerimeter(r).toFixed(2);
+    }
+  </script>
+</body>
+</html>

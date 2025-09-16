@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 2 - Tăng số lên 1</title>
+</head>
+<body>
+  <h2>Bài 2: Tạo hàm tăng giá trị số lên 1</h2>
+  <input type="number" id="num" placeholder="Nhập số">
+  <button onclick="increaseNumber()">Tăng số</button>
+  <p id="result"></p>
+
+  <script>
+    function increaseByOne(n) {
+      return n + 1;
+    }
+
+    function increaseNumber() {
+      let value = parseInt(document.getElementById("num").value);
+      if (isNaN(value)) {
+        document.getElementById("result").innerText = "Vui lòng nhập số!";
+        return;
+      }
+      let newValue = increaseByOne(value);
+      document.getElementById("result").innerText = "Kết quả sau khi tăng: " + newValue;
+    }
+  </script>
+</body>
+</html>

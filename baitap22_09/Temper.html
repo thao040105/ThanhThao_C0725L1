@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Lập trình OOP - Temperature</title>
+</head>
+<body>
+  <h2>Mô tả Nhiệt độ bằng OOP</h2>
+
+  <script>
+    
+    class Temperature {
+      constructor(celsius) {
+        if (celsius < -273) {
+          throw new Error("Nhiệt độ không được nhỏ hơn -273°C");
+        }
+        this.celsius = celsius;
+      }
+
+      // Getter
+      getCelsius() {
+        return this.celsius;
+      }
+
+      // Setter
+      setCelsius(celsius) {
+        if (celsius < -273) {
+          throw new Error("Nhiệt độ không được nhỏ hơn -273°C");
+        }
+        this.celsius = celsius;
+      }
+
+      toFahrenheit() {
+        return this.celsius * 9/5 + 32;
+      }
+
+      toKelvin() {
+        return this.celsius + 273.15;
+      }
+    }
+
+   
+    try {
+      
+      let temp = new Temperature(25);
+
+     
+      document.write("<p>Nhiệt độ hiện tại: " + temp.getCelsius() + "°C</p>");
+      document.write("<p>Đổi sang Fahrenheit: " + temp.toFahrenheit().toFixed(2) + "°F</p>");
+      document.write("<p>Đổi sang Kelvin: " + temp.toKelvin().toFixed(2) + "K</p>");
+
+    
+      temp.setCelsius(100);
+      document.write("<hr><p><b>Sau khi thay đổi nhiệt độ:</b></p>");
+      document.write("<p>Nhiệt độ hiện tại: " + temp.getCelsius() + "°C</p>");
+      document.write("<p>Đổi sang Fahrenheit: " + temp.toFahrenheit().toFixed(2) + "°F</p>");
+      document.write("<p>Đổi sang Kelvin: " + temp.toKelvin().toFixed(2) + "K</p>");
+    } catch (error) {
+      document.write("<p style='color:red;'>" + error.message + "</p>");
+    }
+  </script>
+</body>
+</html>

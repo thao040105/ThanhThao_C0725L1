@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Lập trình OOP - Rectangle</title>
+</head>
+<body>
+  <h2>Mô tả Hình chữ nhật bằng OOP</h2>
+  <canvas id="myCanvas" width="400" height="300" style="border:1px solid #000"></canvas>
+
+  <script>
+   
+    class Rectangle {
+      constructor(length, width) {
+        this.length = length; // thuộc tính chiều dài
+        this.width = width;   // thuộc tính chiều rộng
+      }
+
+      // getter & setter
+      getLength() {
+        return this.length;
+      }
+
+      getWidth() {
+        return this.width;
+      }
+
+      setLength(length) {
+        this.length = length;
+      }
+
+      setWidth(width) {
+        this.width = width;
+      }
+
+      // phương thức tính diện tích
+      getArea() {
+        return this.length * this.width;
+      }
+
+      // phương thức tính chu vi
+      getPerimeter() {
+        return 2 * (this.length + this.width);
+      }
+
+      // phương thức hiển thị hình chữ nhật
+      draw() {
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "lightgreen";
+        ctx.fillRect(50, 50, this.length, this.width);
+
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(50, 50, this.length, this.width);
+      }
+    }
+
+    
+    let rect = new Rectangle(200, 100);
+
+    
+    document.write("<p>Chiều dài: " + rect.getLength() + "</p>");
+    document.write("<p>Chiều rộng: " + rect.getWidth() + "</p>");
+    document.write("<p>Diện tích: " + rect.getArea() + "</p>");
+    document.write("<p>Chu vi: " + rect.getPerimeter() + "</p>");
+
+   
+    rect.draw();
+
+    setTimeout(() => {
+      rect.setLength(150);
+      rect.setWidth(120);
+
+      document.write("<hr><p><b>Sau khi thay đổi kích thước:</b></p>");
+      document.write("<p>Chiều dài: " + rect.getLength() + "</p>");
+      document.write("<p>Chiều rộng: " + rect.getWidth() + "</p>");
+      document.write("<p>Diện tích: " + rect.getArea() + "</p>");
+      document.write("<p>Chu vi: " + rect.getPerimeter() + "</p>");
+
+      rect.draw();
+    }, 3000);
+  </script>
+</body>
+</html>

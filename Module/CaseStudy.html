@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Origato Admin — Quản lý sản phẩm (Vitamin House style)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#e95b4a; /* vitamin house like warm coral */
+      --muted:#6c757d;
+      --card-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; background:#f6f7f8}
+    .topbar{background:linear-gradient(90deg,#fff 0%,#fff 100%);border-bottom:1px solid #eee}
+    .brand{color:var(--primary);font-weight:700;letter-spacing:.3px}
+    .search-box{max-width:520px}
+    .sidebar{background:#fff;border-right:1px solid #eee;min-height:calc(100vh - 70px)}
+    .category-item{padding:.6rem .9rem;border-radius:.5rem;cursor:pointer}
+    .category-item:hover{background:#fff5f4}
+    .product-card{border:none;border-radius:12px;box-shadow:var(--card-shadow)}
+    .product-card .badge{background:rgba(0,0,0,0.06);color:#000}
+    .product-img{height:180px;object-fit:cover;border-top-left-radius:12px;border-top-right-radius:12px}
+    .price{font-weight:700;color:var(--primary)}
+    .small-muted{color:var(--muted);font-size:.9rem}
+    .inline-actions button{margin-left:.25rem}
+    .sticky-footer{position:sticky;bottom:0;background:#fff;padding:.6rem;border-top:1px solid #eee}
+    @media(max-width:991px){ .sidebar{display:none} }
+  </style>
+</head>
+<body>
+
+<nav class="topbar py-2 shadow-sm">
+  <div class="container d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center gap-3">
+      <a class="brand h5 mb-0 me-3" href="#">Vitamin House</a>
+      <div class="d-none d-md-block small-muted">Quản lý sản phẩm — giao diện tham khảo Vitamin House</div>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <div class="input-group search-box">
+        <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242 1.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg></span>
+        <input id="searchInput" type="search" class="form-control form-control-sm" placeholder="Tìm theo tên, mô tả...">
+      </div>
+
+      <button class="btn btn-sm btn-outline-secondary" id="btnNew">+ Thêm</button>
+      <div class="dropdown">
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">Hành động</button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" id="exportBtn">Xuất JSON</a></li>
+          <li><a class="dropdown-item" id="importBtn">Nhập JSON</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <aside class="col-lg-2 sidebar p-3">
+      <h6 class="mb-3">Danh mục</h6>
+      <div id="categories" class="list-group list-group-flush">
+        <!-- categories injected -->
+      </div>
+      <hr>
+      <h6 class="mb-2">Bộ lọc</h6>
+      <div class="mb-2 small-muted">Sắp xếp</div>
+      <select id="sortSelect" class="form-select form-select-sm mb-3">
+        <option value="default">Mặc định</option>
+        <option value="price_asc">Giá tăng dần</option>
+        <option value="price_desc">Giá giảm dần</option>
+        <option value="qty_asc">Số lượng tăng dần</option>
+        <option value="qty_desc">Số lượng giảm dần</option>
+      </select>
+      <div class="small-muted mb-2">Trạng thái tồn kho</div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="lowstock" id="lowstock">
+        <label class="form-check-label" for="lowstock">Cảnh báo sắp hết</label>
+      </div>
+    </aside>
+
+    <main class="col-lg-10">
+      <div class="row mb-3 align-items-center">
+        <div class="col-6">
+          <h5 class="mb-0">Sản phẩm</h5>
+          <div class="small-muted">Hiển thị các sản phẩm theo phong cách Vitamin House</div>
+        </div>
+        <div class="col-6 text-end d-none d-md-block">
+          <span class="small-muted me-2">Hiện có <strong id="countProducts">0</strong> sản phẩm</span>
+        </div>
+      </div>
+
+      <div id="productGrid" class="row g-3">
+        <!-- cards injected here -->
+      </div>
+
+      <div class="mt-4 text-center small-muted">— Không có sản phẩm khác —</div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal Thêm / Sửa -->
+<div class="modal fade" id="productModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle">Thêm sản phẩm</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="productForm">
+          <input type="hidden" id="productId">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Tên sản phẩm</label>
+              <input id="name" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Danh mục</label>
+              <input id="category" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Giá (VNĐ)</label>
+              <input id="price" type="number" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Số lượng</label>
+              <input id="qty" type="number" class="form-control" value="10" required>
+            </div>
+            <div class="col-md-8">
+              <label class="form-label">Ảnh (URL)</label>
+              <input id="image" class="form-control" placeholder="https://...">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Mô tả</label>
+              <textarea id="desc" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col-12 text-end small-muted">Bạn có thể dán link ảnh hoặc để trống để dùng ảnh mẫu.</div>
+          </div>
+          <!-- Thêm sau input -->
+          <img id="previewImg" src="" alt="Xem trước ảnh" style="max-width:100%;margin-top:8px;display:none;">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-bs-dismiss="modal">Hủy</button>
+        <button class="btn btn-primary" id="saveBtn">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+let products = [
+  {id:1,name:'Bánh Mochi Nhật Bản',category:'Bánh',price:119000,qty:12,img:'../media/anh1.jpg',desc:'Mochi mềm dẻo, nhân đậu đỏ truyền thống.'},
+  {id:2,name:'Kẹo Matcha Hokkaido',category:'Kẹo',price:49000,qty:60,img:'../media/anh91.jpg',desc:'Kẹo vị trà xanh nguyên chất.'},
+  {id:3,name:'Bánh Sen Vị Sữa',category:'Bánh',price:89000,qty:5,img:'../media/anh5.jpg',desc:'Bánh mềm, vị sữa thơm nhẹ.'}
+];
+
+
+const productGrid = document.getElementById('productGrid');
+const categoriesEl = document.getElementById('categories');
+const searchInput = document.getElementById('searchInput');
+const countProducts = document.getElementById('countProducts');
+const modal = new bootstrap.Modal(document.getElementById('productModal'));
+
+function currency(n){ return n.toLocaleString('vi-VN'); }
+
+function renderCategories(){
+  const cats = ['Tất cả'].concat([...new Set(products.map(p=>p.category))]);
+  categoriesEl.innerHTML = cats.map(c=>`<div class="category-item" data-cat="${c=='Tất cả'?'':c}">${c}</div>`).join('');
+ 
+  document.querySelectorAll('.category-item').forEach(el=>el.addEventListener('click', (e)=>{
+    document.querySelectorAll('.category-item').forEach(x=>x.classList.remove('bg-light'));
+    e.currentTarget.classList.add('bg-light');
+    const cat = e.currentTarget.getAttribute('data-cat');
+    searchInput.value='';
+    applyFilters(cat);
+  }));
+}
+
+function cardHTML(p){
+  const low = p.qty<=5 ? '<div class="badge bg-warning text-dark">Sắp hết</div>' : '';
+  return `
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card product-card h-100">
+        <img src="${p.img||'https://via.placeholder.com/600x400?text=No+Image'}" class="product-img" alt="${p.name}">
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <h6 class="mb-1">${p.name}</h6>
+              <div class="small-muted">${p.category}</div>
+            </div>
+            <div class="text-end">
+              <div class="price">${currency(p.price)}</div>
+              ${low}
+            </div>
+          </div>
+          <p class="small-muted mb-3 flex-grow-1">${(p.desc||'').substring(0,100)}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="small-muted">Kho: <strong>${p.qty}</strong></div>
+            <div class="inline-actions">
+              <button class="btn btn-sm btn-outline-primary" onclick="openEdit(${p.id})">Sửa</button>
+              <button class="btn btn-sm btn-outline-danger" onclick="removeProduct(${p.id})">Xóa</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function refresh(list=products){
+  productGrid.innerHTML = list.map(p=>cardHTML(p)).join('') || '<div class="col-12 text-center py-5 small-muted">Không có sản phẩm</div>';
+  countProducts.innerText = list.length;
+  renderCategories();
+}
+
+function applyFilters(category=''){
+  const q = searchInput.value.trim().toLowerCase();
+  let list = products.filter(p=>{
+    return ( (p.name.toLowerCase().includes(q) || (p.desc||'').toLowerCase().includes(q)) ) && (category? p.category===category : true);
+  });
+  // apply sort
+  const sort = document.getElementById('sortSelect')?.value || 'default';
+  if(sort==='price_asc') list.sort((a,b)=>a.price-b.price);
+  if(sort==='price_desc') list.sort((a,b)=>b.price-a.price);
+  if(sort==='qty_asc') list.sort((a,b)=>a.qty-b.qty);
+  if(sort==='qty_desc') list.sort((a,b)=>b.qty-a.qty);
+  // lowstock filter
+  if(document.getElementById('lowstock')?.checked) list = list.filter(p=>p.qty<=5);
+  refresh(list);
+}
+
+// CRUD
+function openEdit(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  document.getElementById('modalTitle').innerText = 'Sửa sản phẩm';
+  document.getElementById('productId').value = p.id;
+  document.getElementById('name').value = p.name;
+  document.getElementById('category').value = p.category;
+  document.getElementById('price').value = p.price;
+  document.getElementById('qty').value = p.qty;
+  document.getElementById('image').value = p.img;
+  document.getElementById('desc').value = p.desc;
+  modal.show();
+}
+
+function removeProduct(id){
+  if(!confirm('Xóa sản phẩm này?')) return;
+  products = products.filter(p=>p.id!==id);
+  saveToStorage();
+  applyFilters();
+}
+
+// add new
+document.getElementById('btnNew').addEventListener('click', ()=>{
+  document.getElementById('modalTitle').innerText = 'Thêm sản phẩm';
+  document.getElementById('productForm').reset();
+  document.getElementById('productId').value = '';
+  modal.show();
+});
+
+document.getElementById('saveBtn').addEventListener('click', ()=>{
+  const id = Number(document.getElementById('productId').value);
+  const name = document.getElementById('name').value.trim();
+  const category = document.getElementById('category').value.trim();
+  const price = Number(document.getElementById('price').value) || 0;
+  const qty = Number(document.getElementById('qty').value) || 0;
+  const img = document.getElementById('image').value.trim();
+  const desc = document.getElementById('desc').value.trim();
+  if(!name || !category){ alert('Nhập tên và danh mục'); return; }
+  if(id){
+    const p = products.find(x=>x.id===id);
+    Object.assign(p,{name,category,price,qty,img,desc});
+  } else {
+    const newid = products.length? Math.max(...products.map(p=>p.id))+1 : 1;
+    products.unshift({id:newid,name,category,price,qty,img,desc}); // add to top
+  }
+  saveToStorage();
+  modal.hide();
+  applyFilters();
+});
+
+// search + filters
+searchInput.addEventListener('input', ()=>applyFilters());
+document.getElementById('sortSelect').addEventListener('change', ()=>applyFilters());
+document.getElementById('lowstock').addEventListener('change', ()=>applyFilters());
+
+// Export / Import
+document.getElementById('exportBtn').addEventListener('click', ()=>{
+  const blob = new Blob([JSON.stringify(products, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'origato_products.json'; a.click(); URL.revokeObjectURL(url);
+});
+
+// import (hidden input)
+const importInput = document.createElement('input'); importInput.type='file'; importInput.accept='application/json'; importInput.style.display='none';
+importInput.addEventListener('change', e=>{
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader(); r.onload = ev => {
+    try{
+      const arr = JSON.parse(ev.target.result);
+      if(Array.isArray(arr)){
+        products = arr.map((p,i)=>({id:p.id||Date.now()+i,name:p.name||'No name',category:p.category||'Khác',price:Number(p.price)||0,qty:Number(p.qty)||0,img:p.img||'',desc:p.desc||''}));
+        saveToStorage(); applyFilters(); alert('Nhập thành công');
+      } else alert('File không đúng định dạng');
+    }catch(err){ alert('Lỗi file'); }
+  };
+  r.readAsText(f);
+});
+document.body.appendChild(importInput);
+document.getElementById('importBtn').addEventListener('click', ()=>importInput.click());
+
+// localStorage
+function saveToStorage(){ localStorage.setItem('origato_vh', JSON.stringify(products)); }
+function loadFromStorage(){ const raw = localStorage.getItem('origato_vh'); if(raw){ try{ products = JSON.parse(raw); }catch{} } }
+
+// init
+loadFromStorage(); applyFilters();
+
+document.getElementById('image').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(file){
+    const url = URL.createObjectURL(file);
+    document.getElementById('previewImg').src = url;
+    document.getElementById('previewImg').style.display = 'block';
+    // Nếu muốn lưu url này vào sản phẩm, dùng url ở đây
+  }
+});
+</script>
+</body>
+</html>

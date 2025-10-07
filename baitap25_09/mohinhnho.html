@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Adam & Eva ăn táo</title>
+</head>
+<body>
+  <h2>🍎 Mô phỏng Adam & Eva ăn táo</h2>
+  <p id="apple">Táo còn: 10</p>
+  <p id="adam">Adam (60kg)</p>
+  <p id="eva">Eva (50kg)</p>
+  <button onclick="adamEat()">Adam ăn</button>
+  <button onclick="evaEat()">Eva ăn</button>
+  <button onclick="autoEat()">Ăn đến hết</button>
+
+  <script>
+    // Lớp Apple
+    class Apple {
+      constructor() { this.weight = 10; }
+      decrease() { if (this.weight > 0) this.weight--; }
+      isEmpty() { return this.weight === 0; }
+      getWeight() { return this.weight; }
+    }
+
+    // Lớp Human
+    class Human {
+      constructor(name, weight) { this.name = name; this.weight = weight; }
+      eat(apple) {
+        if (!apple.isEmpty()) { apple.decrease(); this.weight++; }
+        else alert("Táo đã hết!");
+      }
+    }
+
+    // Tạo đối tượng
+    let apple = new Apple();
+    let adam = new Human("Adam", 60);
+    let eva = new Human("Eva", 50);
+
+    // Cập nhật giao diện
+    function update() {
+      document.getElementById("apple").innerText = "Táo còn: " + apple.getWeight();
+      document.getElementById("adam").innerText = adam.name + " (" + adam.weight + "kg)";
+      document.getElementById("eva").innerText = eva.name + " (" + eva.weight + "kg)";
+    }
+
+    function adamEat() { adam.eat(apple); update(); }
+    function evaEat() { eva.eat(apple); update(); }
+    function autoEat() {
+      while (!apple.isEmpty()) { adam.eat(apple); if(apple.isEmpty()) break; eva.eat(apple); }
+      update();
+    }
+
+    update();
+  </script>
+</body>
+</html>
